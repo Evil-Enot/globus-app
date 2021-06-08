@@ -7,17 +7,9 @@ import com.technopolis_education.globusapp.databinding.ItemFeedPostBinding
 class FeedPostsViewHolder(
     binding: ItemFeedPostBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    var title: TextView? = null
-    var content: TextView? = null
-    var creator: TextView? = null
-    var date: TextView? = null
-    var country: TextView? = null
-
-    init {
-        title = binding.activityTitle
-        content = binding.activityContent
-        creator = binding.activityAuthor
-        date = binding.activityDate
-        country = binding.activityCountry
-    }
+    var title: TextView = binding.activityTitle
+    var content: TextView = binding.activityContent
+    var creator: TextView = binding.activityAuthor
+    var date: TextView = binding.activityDate
+    var country: TextView = binding.activityCountry
 }
