@@ -28,11 +28,14 @@ import com.technopolis_education.globusapp.databinding.FragmentMapEditMarkerBind
 import com.technopolis_education.globusapp.logic.check.InternetConnectionCheck
 import com.technopolis_education.globusapp.model.OneEmailRequest
 import com.technopolis_education.globusapp.model.PointRequest
+import com.technopolis_education.globusapp.model.PostRequest
 import com.technopolis_education.globusapp.model.UserPoints
 import com.technopolis_education.globusapp.model.UserToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class GlobusMapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
     GoogleMap.OnMapClickListener {
@@ -44,6 +47,7 @@ class GlobusMapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClic
     private var marks: Boolean = false
     private var geocoder: List<Address> = listOf()
     private var userEmail = ""
+    private var userNameSurname = ""
 
     private lateinit var mMap: GoogleMap
     private var _binding: FragmentGlobusMapBinding? = null
@@ -63,10 +67,16 @@ class GlobusMapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClic
         val root: View = binding.root
 
         //------------------------------------------------------//
-        // User email
+        // User email and name/surmane
         val userEmailSP = context?.getSharedPreferences("USER EMAIL", Context.MODE_PRIVATE)
+        val userNameSurnameSP =
+            context?.getSharedPreferences("USER NAMESURNAME", Context.MODE_PRIVATE)
+
         if (userEmailSP?.contains("UserEmail") == true) {
             userEmail = userEmailSP.getString("UserEmail", "").toString()
+        }
+        if (userNameSurnameSP?.contains("UserNameSurname") == true) {
+            userNameSurname = userNameSurnameSP.getString("UserNameSurname", "").toString()
         }
         //------------------------------------------------------//
 
@@ -144,6 +154,34 @@ class GlobusMapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClic
                                     )
                                         .show()
                                 }
+                            }
+
+                            override fun onFailure(call: Call<UserToken>, t: Throwable) {
+                                Log.i("test", "error $t")
+                            }
+                        })
+
+                        val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+                        val currentDate = sdf.format(Date())
+
+                        val addPostRequest = PostRequest(
+                            userEmail,
+                            userNameSurname.split(" ")[0],
+                            userNameSurname.split(" ")[1],
+                            userContent.text.toString(),
+                            currentDate,
+                            pointRequest
+                        )
+
+                        val callAddPost = webClient.addPost(addPostRequest)
+                        callAddPost.enqueue(object : Callback<UserToken> {
+                            override fun onResponse(
+                                call: Call<UserToken>,
+                                response: Response<UserToken>
+                            ) {
+                                Log.i("test", response.body().toString())
+                                userTitle.text.clear()
+                                userContent.text.clear()
                             }
 
                             override fun onFailure(call: Call<UserToken>, t: Throwable) {

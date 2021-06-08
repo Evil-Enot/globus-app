@@ -19,6 +19,7 @@ import com.technopolis_education.globusapp.logic.check.InternetConnectionCheck
 import com.technopolis_education.globusapp.model.FriendInfoResponse
 import com.technopolis_education.globusapp.model.FriendsInfo
 import com.technopolis_education.globusapp.model.OneEmailRequest
+import com.technopolis_education.globusapp.model.PostRequest
 import com.technopolis_education.globusapp.ui.friend.activity.FriendActivityFragment
 import com.technopolis_education.globusapp.ui.friend.friends.FriendFriendsFragment
 import retrofit2.Call
@@ -111,7 +112,19 @@ class FriendFragment : Fragment() {
                 }
             })
 
-            friendActivityCount.text = "Activity: "
+            val callPosts = webClient.findAllPost(emailRequest)
+            callPosts.enqueue(object : Callback<ArrayList<PostRequest>> {
+                override fun onResponse(
+                    call: Call<ArrayList<PostRequest>>,
+                    response: Response<ArrayList<PostRequest>>
+                ) {
+                    friendActivityCount.text = "Activities: ${response.body()?.size.toString()}"
+                }
+
+                override fun onFailure(call: Call<ArrayList<PostRequest>>, t: Throwable) {
+                    Log.i("test", "error $t")
+                }
+            })
         }
 
         //------------------------------------------------------//

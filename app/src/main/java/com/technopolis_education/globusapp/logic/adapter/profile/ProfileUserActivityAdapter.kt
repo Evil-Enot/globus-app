@@ -1,18 +1,22 @@
 package com.technopolis_education.globusapp.logic.adapter.profile
 
+import android.content.Context
+import android.location.Geocoder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.technopolis_education.globusapp.databinding.ItemProfileActiivityCardBinding
-import com.technopolis_education.globusapp.model.UserActivity
+import com.technopolis_education.globusapp.model.PostRequest
 
 class ProfileUserActivityAdapter(
-    private val userActivity: ArrayList<UserActivity>
+    private val userActivity: ArrayList<PostRequest>,
+    private val context: Context?
 ) : RecyclerView.Adapter<ProfileUserActivityViewHolder>(), Filterable {
 
-    var userActivityList: ArrayList<UserActivity> = userActivity
+    var userActivityList: ArrayList<PostRequest> = userActivity
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,11 +32,25 @@ class ProfileUserActivityAdapter(
     }
 
     override fun onBindViewHolder(holder: ProfileUserActivityViewHolder, position: Int) {
-        holder.activityAuthor.text = userActivityList[position].author
-        holder.activityTitle.text = userActivityList[position].title
-        holder.activityContent.text = userActivityList[position].content
-        holder.activityCountry.text = userActivityList[position].country
-        holder.activityDate.text = userActivityList[position].date
+        holder.activityAuthor.text =
+            "${userActivityList[position].userName} ${userActivityList[position].userSurname}"
+        holder.activityTitle.text = "Title"
+        holder.activityContent.text = userActivityList[position].text
+
+
+        val latitude = userActivityList[position].point?.latitude?.toDouble()!!
+        val longitude = userActivityList[position].point?.longitude?.toDouble()!!
+
+        val geocoder = Geocoder(context).getFromLocation(
+            latitude,
+            longitude,
+            1
+        )[0]
+
+        Log.i("test", "${geocoder.countryName} ${geocoder.adminArea}")
+        holder.activityCountry.text = "${geocoder.countryName} ${geocoder.adminArea}"
+
+        holder.activityDate.text = userActivityList[position].time
     }
 
     override fun getItemCount(): Int {
@@ -46,9 +64,12 @@ class ProfileUserActivityAdapter(
                 userActivityList = if (charSearch.isEmpty()) {
                     userActivity
                 } else {
-                    val resultList = ArrayList<UserActivity>()
+                    val resultList = ArrayList<PostRequest>()
                     for (activity in userActivity) {
-                        if ((activity.title)
+
+                        //FIX
+
+                        if ((activity.text)
                                 .contains(charSearch.toLowerCase())
                         ) {
                             resultList.add(activity)
@@ -63,7 +84,7 @@ class ProfileUserActivityAdapter(
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                userActivityList = results?.values as ArrayList<UserActivity>
+                userActivityList = results?.values as ArrayList<PostRequest>
                 notifyDataSetChanged()
             }
         }

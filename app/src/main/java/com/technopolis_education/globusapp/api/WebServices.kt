@@ -4,6 +4,7 @@ import com.technopolis_education.globusapp.model.FriendInfoResponse
 import com.technopolis_education.globusapp.model.FriendsInfo
 import com.technopolis_education.globusapp.model.OneEmailRequest
 import com.technopolis_education.globusapp.model.PointRequest
+import com.technopolis_education.globusapp.model.PostRequest
 import com.technopolis_education.globusapp.model.RegResponse
 import com.technopolis_education.globusapp.model.TwoEmailRequest
 import com.technopolis_education.globusapp.model.UserAuthRequest
@@ -75,4 +76,16 @@ interface WebServices {
     fun getPoints(
         @Body body: OneEmailRequest
     ): Call<ArrayList<UserPoints>>
+
+    // Добавление поста
+    @POST("/addpost")
+    fun addPost(
+        @Body body: PostRequest
+    ): Call<UserToken>
+
+    // Получение постов
+    @POST("/findallpost")
+    fun findAllPost(
+        @Body body: OneEmailRequest
+    ): Call<ArrayList<PostRequest>>
 }
