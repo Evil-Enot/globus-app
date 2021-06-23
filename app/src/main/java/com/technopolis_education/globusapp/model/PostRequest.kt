@@ -6,5 +6,6 @@ data class PostRequest(
     val userSurname: String,
     val text: String,
     val time: String,
-    val point: PointRequest?
+    val point: PointRequest?,
+    val title: String
 )

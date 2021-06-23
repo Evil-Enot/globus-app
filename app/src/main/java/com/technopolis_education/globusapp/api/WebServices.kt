@@ -88,4 +88,10 @@ interface WebServices {
     fun findAllPost(
         @Body body: OneEmailRequest
     ): Call<ArrayList<PostRequest>>
+
+    // Получение постов посписок
+    @POST("/getnews")
+    fun getNews(
+        @Body body: OneEmailRequest
+    ): Call<ArrayList<PostRequest>>
 }

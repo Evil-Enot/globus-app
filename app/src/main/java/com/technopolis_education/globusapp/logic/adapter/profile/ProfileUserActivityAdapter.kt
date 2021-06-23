@@ -34,12 +34,16 @@ class ProfileUserActivityAdapter(
     override fun onBindViewHolder(holder: ProfileUserActivityViewHolder, position: Int) {
         holder.activityAuthor.text =
             "${userActivityList[position].userName} ${userActivityList[position].userSurname}"
-        holder.activityTitle.text = "Title"
+        holder.activityTitle.text = userActivityList[position].title
         holder.activityContent.text = userActivityList[position].text
 
 
-        val latitude = userActivityList[position].point?.latitude?.toDouble()!!
-        val longitude = userActivityList[position].point?.longitude?.toDouble()!!
+        var latitude: Double = -31.952854
+        var longitude: Double = 115.857342
+        if (userActivityList[position].point != null) {
+            latitude = userActivityList[position].point?.latitude?.toDouble()!!
+            longitude = userActivityList[position].point?.longitude?.toDouble()!!
+        }
 
         val geocoder = Geocoder(context).getFromLocation(
             latitude,

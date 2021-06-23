@@ -121,9 +121,11 @@ class AuthorizationActivity : AppCompatActivity() {
         val auth = getSharedPreferences("AUTH", Context.MODE_PRIVATE)
         val userToken = getSharedPreferences("USER TOKEN", Context.MODE_PRIVATE)
         val userId = getSharedPreferences("USER ID", Context.MODE_PRIVATE)
+        val userEmail = getSharedPreferences("USER EMAIL", Context.MODE_PRIVATE)
         userId.edit().putString("UserId", userInfo?.objectToResponse?.id).apply()
         auth.edit().putBoolean("Success", true).apply()
         userToken.edit().putString("UserToken", userInfo?.objectToResponse?.token).apply()
+        userEmail.edit().putString("UserEmail", "").apply()
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

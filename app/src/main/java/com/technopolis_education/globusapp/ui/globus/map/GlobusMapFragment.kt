@@ -170,7 +170,8 @@ class GlobusMapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClic
                             userNameSurname.split(" ")[1],
                             userContent.text.toString(),
                             currentDate,
-                            pointRequest
+                            pointRequest,
+                            userTitle.text.toString()
                         )
 
                         val callAddPost = webClient.addPost(addPostRequest)

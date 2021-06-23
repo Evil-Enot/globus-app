@@ -89,7 +89,7 @@ class FeedFragment : Fragment() {
             printFeed(userFeed, userFeedList)
         } else {
             userFeedList.clear()
-            val callUserActivity = webClient.findAllPost(oneEmailRequest)
+            val callUserActivity = webClient.getNews(oneEmailRequest)
             callUserActivity.enqueue(object : Callback<ArrayList<PostRequest>> {
                 override fun onResponse(
                     call: Call<ArrayList<PostRequest>>,

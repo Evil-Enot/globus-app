@@ -95,7 +95,7 @@ class UserActivityFragment : Fragment() {
                     call: Call<ArrayList<PostRequest>>,
                     response: Response<ArrayList<PostRequest>>
                 ) {
-                    for (i in 0 until response.body()!!.size) {
+                    for (i in response.body()!!.size - 1 downTo 0) {
                         val userGroup = response.body()!![i]
                         userActivityList.add(userGroup)
                     }

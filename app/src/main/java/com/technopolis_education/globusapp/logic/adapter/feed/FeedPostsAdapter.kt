@@ -34,12 +34,16 @@ class FeedPostsAdapter(
     override fun onBindViewHolder(holder: FeedPostsViewHolder, position: Int) {
         holder.creator.text =
             "${activityList[position].userName} ${activityList[position].userSurname}"
-        holder.title.text = "Title"
+        holder.title.text = activityList[position].title
         holder.content.text = activityList[position].text
 
 
-        val latitude = activityList[position].point?.latitude?.toDouble()!!
-        val longitude = activityList[position].point?.longitude?.toDouble()!!
+        var latitude: Double = -31.952854
+        var longitude: Double = 115.857342
+        if (activityList[position].point != null) {
+            latitude = activityList[position].point?.latitude?.toDouble()!!
+            longitude = activityList[position].point?.longitude?.toDouble()!!
+        }
 
         val geocoder = Geocoder(context).getFromLocation(
             latitude,

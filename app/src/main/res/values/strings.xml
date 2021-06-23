@@ -21,11 +21,11 @@
     <string name="password_missmatch">Password mismatch</string>
     <string name="authorization">Authorization</string>
     <string name="action_logout">Logout</string>
-    <string name="add_friend">Add friend</string>
-    <string name="find_friend">Find friend</string>
-    <string name="edit_friend">Edit friend</string>
-    <string name="friend_photo">Friend photo</string>
-    <string name="friends">Friends</string>
+    <string name="add_friend">Add subscription</string>
+    <string name="find_friend">Find subscriptions</string>
+    <string name="edit_friend">Edit subscriber</string>
+    <string name="friend_photo">Subscriber photo</string>
+    <string name="friends">Subscriptions</string>
     <string name="activity">Activity</string>
     <string name="statistics">Statistics</string>
     <string name="delete">Delete</string>
@@ -33,7 +33,7 @@
     <string name="wrong_email_or_password">Incorrect email or password</string>
     <string name="auth_success">Successful authorization</string>
     <string name="name_surname_hint">Enter name and surname</string>
-    <string name="you_don_t_have_any_friends_yet_you_can_find_them_by_clicking_on_the_button_above">You don\'t have any friends yet. \nYou can find them by clicking on the button above</string>
+    <string name="you_don_t_have_any_friends_yet_you_can_find_them_by_clicking_on_the_button_above">You don\'t have any subscription yet.  You can find them by clicking on the button above</string>
     <string name="the_user_has_no_subscriptions_yet">The user has no subscriptions yet.</string>
     <string name="submit">Submit</string>
     <string name="enable_marks">Enable marks</string>
@@ -48,6 +48,11 @@
     <string name="invalid_username">Invalid username</string>
     <string name="mark_where_you_were">Mark where you were</string>
     <string name="the_user_has_no_posts_yet">The user has no posts yet.</string>
-    <string name="you_have_no_posts_yet_nyou_can_create_them_through_the_map_screen">You have no posts yet.\nYou can create them through the map screen</string>
+    <string name="you_have_no_posts_yet_nyou_can_create_them_through_the_map_screen">You have no subscription or users don\'t have any posts yet</string>
     <string name="no_server_connection">No server connection</string>
+    <string name="activity_title">Activity title</string>
+    <string name="activity_content">Activity content</string>
+    <string name="search_posts">Search posts</string>
+    <string name="search_friend">Search subscriptions</string>
+    <string name="enter_freind_email">Enter user email</string>
 </resources>
