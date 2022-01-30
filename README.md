@@ -13,4 +13,4 @@ GlobusApp - это соцсеть для путешественников.
 
 ## Скриншоты:
 
-<img src="/images/auth.jpg" width="300" height="640"><img src="/images/feed.jpg" width="300" height="640"><img src="/images/map.jpg" width="300" height="640"><img src="/images/profile.jpg" width="300" height="640"><img src="/images/profileSubs.jpg" width="300" height="640">
+<img src="/images/auth.jpg" width="300" height="640"><img src="/images/feed.jpg" width="300" height="640"><img src="/images/map.jpg" width="300" height="640"><img src="/images/profile.jpg" width="300" height="640"><img src="/images/profileSubs.jpg" width="300" height="640"> 
