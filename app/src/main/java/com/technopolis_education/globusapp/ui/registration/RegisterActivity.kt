@@ -183,7 +183,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun checkFormat(edit: String, typeOfDialog: DialogType): Boolean {
         return when (typeOfDialog) {
             DialogType.USERNAME -> edit.matches("[a-zA-Z][a-zA-Z_0-9\\-]+ [a-zA-Z][a-zA-Z_0-9\\-]+".toRegex())
-            DialogType.EMAIL -> edit.matches("[a-zA-Z_0-9\\-]+.[a-zA-Z][a-zA-Z_0-9\\-]+@[a-z]{2,7}\\.[a-zA-Z_0-9\\-]+".toRegex()) && edit.length < 255
+            DialogType.EMAIL -> edit.matches("[a-zA-Z_0-9\\-.]+@[a-z]{2,7}\\.[a-zA-Z_0-9\\-]+".toRegex()) && edit.length < 255
             DialogType.PASSWORD -> edit.matches("[a-zA-Z0-9!@#$%&]+".toRegex())
         }
     }

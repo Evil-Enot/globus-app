@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class WebClient {
-    private val BASE_URL = "http://192.168.0.5:8080"
+    private val BASE_URL = "http://192.168.0.7:8080"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
